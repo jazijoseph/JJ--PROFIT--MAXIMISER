@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JJ PROFIT MAXIMIZER</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            width: 350px;
+            text-align: center;
+            overflow-y: auto;
+            max-height: 95vh;
+        }
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            width: 90%;
+            font-size: 1rem;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            background: #333;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JJ PROFIT MAXIMIZER</h1>
+        <input type="number" id="quantity" placeholder="Enter Quantity" />
+        <input type="number" id="price" placeholder="Enter Unit Price" />
+        <input type="number" id="discount" placeholder="Enter Discount" />
+        <input type="number" id="drawings" placeholder="Enter Drawings" />
+        <input type="number" id="purchases" placeholder="Enter Purchases" />
+        <input type="number" id="damages" placeholder="Enter Damages" />
+        <input type="number" id="salesReturns" placeholder="Enter Sales Returns" />
+
+        <h3>Model Constants</h3>
+        <input type="number" id="coefQuantity" placeholder="Coefficient for Quantity" />
+        <input type="number" id="coefPrice" placeholder="Coefficient for Price" />
+        <input type="number" id="coefDiscount" placeholder="Coefficient for Discount" />
+        <input type="number" id="coefDrawings" placeholder="Coefficient for Drawings" />
+        <input type="number" id="coefPurchases" placeholder="Coefficient for Purchases" />
+        <input type="number" id="coefDamages" placeholder="Coefficient for Damages" />
+        <input type="number" id="coefSalesReturns" placeholder="Coefficient for Sales Returns" />
+        <input type="number" id="intercept" placeholder="Intercept" />
+
+        <button onclick="calculateAmount()">Calculate Expected Amount</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateAmount() {
+            const quantity = parseFloat(document.getElementById('quantity').value) || 0;
+            const price = parseFloat(document.getElementById('price').value) || 0;
+            const discount = parseFloat(document.getElementById('discount').value) || 0;
+            const drawings = parseFloat(document.getElementById('drawings').value) || 0;
+            const purchases = parseFloat(document.getElementById('purchases').value) || 0;
+            const damages = parseFloat(document.getElementById('damages').value) || 0;
+            const salesReturns = parseFloat(document.getElementById('salesReturns').value) || 0;
+
+            const coefQuantity = parseFloat(document.getElementById('coefQuantity').value) || 0;
+            const coefPrice = parseFloat(document.getElementById('coefPrice').value) || 0;
+            const coefDiscount = parseFloat(document.getElementById('coefDiscount').value) || 0;
+            const coefDrawings = parseFloat(document.getElementById('coefDrawings').value) || 0;
+            const coefPurchases = parseFloat(document.getElementById('coefPurchases').value) || 0;
+            const coefDamages = parseFloat(document.getElementById('coefDamages').value) || 0;
+            const coefSalesReturns = parseFloat(document.getElementById('coefSalesReturns').value) || 0;
+            const intercept = parseFloat(document.getElementById('intercept').value) || 0;
+
+            const expectedAmount =
+                intercept +
+                coefQuantity * quantity +
+                coefPrice * price +
+                coefDiscount * discount +
+                coefDrawings * drawings +
+                coefPurchases * purchases +
+                coefDamages * damages +
+                coefSalesReturns * salesReturns;
+
+            document.getElementById('result').innerText = `Expected Amount: $${expectedAmount.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
